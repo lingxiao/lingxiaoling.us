@@ -22,11 +22,12 @@ const app  : express.Application = myApp.initApp();
 */
 
 app.get('/curriculum-vitae', (req : express.Request , res : express.Response, next : express.NextFunction ) => 
-	pdf_controller.serve_cv(req, res)
+	// pdf_controller.serve_cv(req, res)
+	res.redirect('https://github.com/lingxiao/curriculum-vitae/blob/master/resume.pdf')
 );
 
 
-app.get('/rl_hj_xiao', (req : express.Request , res : express.Response, next : express.NextFunction ) => 
+app.get('/final_hj_ling', (req : express.Request , res : express.Response, next : express.NextFunction ) => 
 	pdf_controller.serve_hj(req, res)
 );
 

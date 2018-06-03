@@ -15,11 +15,12 @@ import * as url       from 'url'    ;
 
 export function serve_cv(req : express.Request , res : express.Response ){
 	console.log('directory\n\n\n: ', __dirname)
-	serve_pdf( res, '../../public/curriculum-vitae/resume.pdf')
+	serve_pdf( res, '../../public/resume.pdf')
 }
 
 export function serve_hj(req : express.Request ,res : express.Response ){
-	serve_pdf(res, '../../public/assets/pdf/final_hj_ling.pdf')
+
+	serve_pdf(res, '../../public/final_hj_ling.pdf')
 }
 
 
@@ -31,6 +32,8 @@ export function serve_hj(req : express.Request ,res : express.Response ){
 export function serve_pdf( res : express.Response, file_path : string) {
 	
 	const pdf_path = url.resolve(__dirname, file_path)
+
+	console.log('***************** path_pdf: \n', pdf_path)
 
 	fs.readFile( pdf_path, (err, data) =>{
 		res.contentType('application/pdf');
