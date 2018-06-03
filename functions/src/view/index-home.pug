@@ -1,0 +1,23 @@
+extend parent.pug
+
+block content
+
+    include includes/menu.pug
+    //- include includes/icon.pug
+    include includes/about_me.pug
+
+    .main-content-inner-wrapper(data-content-field="main-content").index-gallery-wrapper(data-controller="IndexSetup, IndexPositioning, IndexNavOverflow, IndexNavScroll")
+
+        +menu( '/art'
+             , '/blog'
+             , '/code'
+             , true
+             , '#about-me'
+             , ''
+             )
+
+
+    <div id = 'about-me'>
+        +about_me('../../assets/images/about-me-1.jpg')
+    </div>
+

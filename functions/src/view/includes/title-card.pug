@@ -1,0 +1,11 @@
+mixin title_card(header, quote)
+
+	.title-card-wrapper(data-controller='TitleCardHandler')
+		.overlay.blended-overlay.gallery-overlay.title-card-overlay
+		.title-card(data-slide-id='title-card')
+			.title-desc-outer-wrapper
+				.title-desc-inner-wrapper
+					h1.page-title
+						span(data-content-field='title') #{header}
+					.page-desc(data-content-field='description')
+						p #{quote}

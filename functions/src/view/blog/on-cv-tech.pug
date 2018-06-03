@@ -1,0 +1,88 @@
+extend ../parent-scroll.pug
+
+block content
+
+  include ../includes/content/title.pug
+  include ../includes/content/header_2.pug
+  include ../includes/content/header_3.pug
+
+  // / headerWrapper
+  #pageWrapper.hfeed(role='main')
+    section#page(data-content-field='main-content')
+      article#article-5ab1b4300e2e72081e59396c.hentry.category-social.author-benedict-evans.post-type-text(data-item-id='')
+        .content-wrapper
+          // SPECIAL CONTENT
+          .post
+            // POST HEADER
+
+
+            +title( "April 20th, 2017"
+                  , "Computer Vision"
+                  , "A Technical Survey"
+                  )
+
+    
+            // POST BODY
+            .body.entry-content
+              #item-5ab1b4300e2e72081e59396c.sqs-layout.sqs-grid-12.columns-12(data-layout-label='Post Body', data-type='item', data-updated-on='1521595449661')
+                .row.sqs-row
+                  .col.sqs-col-12.span-12
+                    #block-yui_3_17_2_1_1521598810432_30584.sqs-block.html-block.sqs-block-html(data-block-type='2')
+                      .sqs-block-content
+
+                        +header_2('ABSTRACT')
+
+                        p
+                          | I co-led the project with <a target="_blank" href="https://www.chloehjeong.com/">Heejin Jeong</a>, supervised by professor Lyle Ungar and Chris Callison-Burch. and built an intelligent dialogue system that was deployed on the Echo Dot. It is well known that dialogue systems relying on hand-crafted rules are too inflexible to handle the myriad of sentences in a natural conversation. And although current recurrent neural net based systems are more robust to input, they have a tendency to generate irrelevant or curt responses that terminates a conversation prematurely. We hypothesized that an engaging dialogue system should satisfy two criteria: it must incorporate the dialogue history when deciding what to say next, and it must be able to understand the future consequence of its utterances. We posed the “history aware” problem as an optimization problem with multiple objectives where by both likelihood of the current sentence given previous sentences, and the likelihood of the current word given previous words are maximized. This complex distribution is represented by a hierarchical neural net. We posed the “future aware” requirement as a deep reinforcement learning problem, whereby the dialogue agent optimized a conversation policy given specified future reward. Our model was trained on CALLHOME American English speech corpus as well as the OpenSubtitles corpus. The <a target="_blank" href="https://github.com/lingxiao/lingxiaoling.me/blob/master/public/site/code/final_hj.pdf">paper</a> was submitted to a conference in DC and accepted for poster presentation.
+
+
+                        +header_2('INTRODUCTION')
+
+                        p
+                          | A long standing goal of artificial intelligence has been to program a computer that can carry on a conversation intelligently with a human being.  The first milestone in this direction was ELIZA, created in 1964 at MIT Artificial Intelligence Laboratory by Dr. Joseph Weizenbaum. ELIZA simulated “the responses of a  non-directional psychotherapist in an initial psychiatric interview,” a shrink asking open-ended questions. Some of its responses were so convincing that users became emotionally attached to the program. This led many academics at the time to believe that ELIZA could positively impact people’s mental well being.  However, its rule based system was ultimately too restrictive for prolonged conversation, and this line of research was discontinued after the AI winter. 
+                        p
+                          | In recent years, the proliferation of home assistant devices such as the Alexa and Google Home led to a resurgence of interest in intelligent conversation agents, so called “chatbots.”  Broadly speaking, chabots are expected to carry on two kinds of conversation: informational-retrieval based conversation where the user expects the correct answer for a specific query; and open-domain dialog, where the chatbot is expected to speak about any topic and be “interesting.”  We focus on the second task, using the latest machine learning techniques to train an algorithm on conversation etiquette using transcripts from movie scripts and recorded phone calls. 
+
+
+                        +header_2('TECHNICAL BACKGROUND')
+
+
+                        p
+                          | The next two sections describes the technical background required to understand this work. We assume a basic understanding of computer science, probability, and linear algebra.  And reasonable familiarity with machine learning both in concept and practice. 
+
+                        +header_3('Recurrent Neural Network')
+
+                        p
+                          | We only provide a brief description of recurrent neural nets (RNNs) here. A great introduction to RNN and its popular extension the long short term memory networks (LSTM) can be found <a target="_blank" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">here</a>. RNNs are a family of networks for processing sequences of values, i.e., sentences. For example in Fig 1, the RNN denoted by A will take in some word x in the English language, and output a “hidden” state h. Notably, the arrow that stems from A and loops back onto the box symbolizes the fact that the hidden output is a both a function of the input x, as well as the previous hidden state stored in the network. The representative power of RNNs stems from the fact it has short term memory spanning several symbols in the sequence, which is essential in natural language sentences that have long term dependencies. In practice, the memory capacity of RNNs proved insufficient to model real languages, thus the LSTMs architecture was introduced to explicitly model long term dependencies
+
+                        p 
+                          | Finally, let us examine a specific RNN model and why it matters. In <a href="https://en.wikipedia.org/wiki/Continuous_bag-of-words">continuous bag-of-words</a> model, the RNN is given news articles and must predict the current word given a window of surrounding context words. In this case, the input x is a one-hot representation while the output h is some n-dimensional vector. The power of model is evident when examining the hidden representations, semantically similar words are closer together under under cosine distance than those with dissimilar meanings. In a very rough sense, continuous bag-of-words relate meaning of words to geometry, also known as an embedding. There are numerous such models, collectively called word2vec. Although word2vec has performed admirably on certain word analogy tasks, there is no unique embedding that captures all the various relationships between words at the same time, ie antonyms, hypernyms, meronyms. In fact for many of these relationships, there is tremendous merit to <a target="_blank" href="https://lingxiaoling.me/new-page-3">explicitly learning them from data</a>. <span style="letter-spacing:0.01em">Word2vec models certainly do not relate words to the myriad of entities they may symbolize.  Therefore word2vec do not solve the</span><a target="_blank" style="letter-spacing: 0.01em;" href="https://en.wikipedia.org/wiki/Symbol_grounding_problem"><strong> symbol grounding problem</strong></a>
+
+
+                        +header_3('Reinforcement Learning')
+
+                        p
+                         | This section gives a gentle introduction to reinforcement learning (RL) and deep RL. The essence of RL is learning through interaction. An RL agent interacts with its environment and, upon observing the consequences of its actions, can learn to alter its own behaviour in response to rewards received. This paradigm of trial and error learning is rooted in psychology. Specifically, the autonomous agent has a set of actions A it can take on the environment, there is a set of states S, and a set of rewards R that the agent may receive upon each action. The agent will take an action a at each state s, and upon transitioning to a new state, receive a reward r from the environment.  The agent’s goal is to determine a policy of which action to take in each state so that its reward is maximized at the end of the game. The simplest way to represent policy is as a table mapping states and actions to rewards. Historically, the states and actions of the game is constructed by hand, this is sufficient for simple games (such as tic-tac-toe) but do not scale well to games with high dimensional input and no clear heuristic as to how to represent the states. In the game Space Invaders (Fig 3) for example, the states could be every possible image frame over all possible space invaders games, and the action are all possible left, right, and shoot combinations the player could take. Therefore both the state space and the policy is too large so as to render the problem intractable. Deep RL promises to solve the intractability problem, for example a deep convolutional neural net is first used to compress the states in Space Invaders, then RL is used to approximate a policy with this reduced state space. 
+
+                        +header_2('PROBLEM FORMULATION')
+
+                        p
+                            | This section describes how we formulated the problem of training an intelligent dialogue agent using LSTMs and Deep RL. We model the conversation as a sequence of utterances between two speakers, each utterance is composed of a sequence of words. The goal of the intelligent agent is then to output the “best” response given all previous utterances, and the expected reward of outputting this response. 
+
+                        p
+                            |  As a baseline, we replicated the work of <a target="_blank" href="https://arxiv.org/pdf/1506.05869.pdf">Vinyals and Le</a> (2015), who cast the best response given previous response as a sequence-to-sequence (seq2seq) learning problem. In seq2seq, an encoder LSTM reads the input sequence on token at a time, and keeps track of a hidden state that is updated upon each word read. This hidden state may be loosely interpreted as a “summary” of the sentence, sometimes referred to as an utterance vector. The summary vector is then passed to a decoder LSTM, which predicts the output sequence one word at a time, while updating the same utterance vector from the encoder LSTM. During training, the true output sequence is given to the decoder LSTM, and the model is trained to maximize the cross entropy of the correct sequence given its context. 
+
+                        p
+                            | Next, we tested the hypothesis that the dialogue agent benefits from a richer representation of the conversation history. Specifically, we model the conversation as a <a target="_blank" href="https://arxiv.org/pdf/1502.03520.pdf">random walk over a “discourse space”</a>, where each vector in this space represent some abstract topic of the conversation. Then at each time point, the discourse vector is projected onto the utterance space, and a sequence of words is generated conditioned on this projected discourse vector. We represent this process using a hierarchical recurrent encoder-decoder architecture (HRED), first proposed by <a target="_blank" href="https://arxiv.org/pdf/1507.02221.pdf">Sordoni et al</a>. (2015a) for query prediction, and later adapted by <a target="_blank" href="https://arxiv.org/pdf/1507.04808.pdf">Serban et al</a>. (2016) for neural dialogue generation. Under this model, and encoder LSTM maps each utterance to an utterance vector.   Then an higher-level context LSTM maps this utterance vector to the discourse vector, and propagates this discourse vector between conversations. The decoder LSTM is then used to generate the response conditioned on the discourse vector. Finally, both the baseline seq2seq model and HRED are trained by maximizing the log likelihood (MLE) of the entire session.
+
+                        p 
+                            | Baseline models trained using MLE objectives often output short-sighted and dull responses such as “I don’t know.”  This is not surprising since the MLE objective does not capture the original intent of developing an open-domain dialogue agent that engages the user. We remedy this problem using deep reinforcement learning with hand-crafted reward functions. In our setting, the actions of the agent are the responses it can output, the states are defined by the previous two turns of the dialogue, while the policy is represented by the two baseline encoder-decoder networks we trained using the MLE objective. Following the work of Li et al. (2016), our reward function is a weighted sum of three hand crafted objectives that promote “engaging” dialogue behavior, and the weights are tuned heuristically during training time. The first objective penalizes “dull” responses, defined as eight or more consecutive responses of key phrase such as “I don’t know”, “I have no idea”, and “I don’t know what you’re talking about”, etc. The second function penalizes semantic similarly defined by the cosine distance of the utterance vector of the query and response, this prevents responses that simply paraphrase the user query. The last reward promotes semantic coherence, defined by the probability of the response given the previous state. When searching for the optimal policy using RL, we first initialized the policy using the encoder-decoder trained using the MLE objective, so that it already outputs plausible responses. Then we simulated a conversation between two dialogue agents so that they may find the optimal conversation policy. 
+
+                    //- #block-yui_3_17_2_1_1521595418800_17097.sqs-block.embed-block.sqs-block-embed(data-block-json='{"version":"1.0","floatDir":null,"resolvedBy":"twitter","providerUrl":"https://twitter.com","width":550,"authorUrl":"https://twitter.com/BenedictEvans","resolveObject":"Tweet","type":"rich","hSize":null,"resolved":true,"authorName":"Benedict Evans","url":"https://twitter.com/BenedictEvans/status/309735715879653376","height":null,"cache_age":"3153600000","providerName":"Twitter","html":"<blockquote class=\"twitter-tweet\"><p lang=\"en\" dir=\"ltr\">50% of Facebook\'s engineering effort goes into stuffing more noise into the newsfeed, and the other 50% into working out ways to filter it</p>\u2014 Benedict Evans (@BenedictEvans) <a href=\"https://twitter.com/BenedictEvans/status/309735715879653376?ref_src=twsrc%5Etfw\">March 7, 2013</a></blockquote>\n<script async=\"\" src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>"}', data-block-type='22')
+                      .sqs-block-content
+                        blockquote.twitter-tweet
+                          p(lang='en', dir='ltr')
+                            | 50% of Facebook's engineering effort goes into stuffing more noise into the newsfeed, and the other 50% into working out ways to filter it
+                          | — Benedict Evans (@BenedictEvans) 
+                          a(href='https://twitter.com/BenedictEvans/status/309735715879653376?ref_src=twsrc%5Etfw') March 7, 2013
+                        script(async='', src='https://platform.twitter.com/widgets.js', charset='utf-8')

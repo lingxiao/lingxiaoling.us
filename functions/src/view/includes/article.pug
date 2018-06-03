@@ -1,0 +1,29 @@
+mixin article(title, month, date, year, img_src, link, abstract)
+
+    //- article class
+    article.eventlist-event.eventlist-event--upcoming.eventlist-event--hasimg.eventlist-hasimg.eventlist-event--multiday
+        a.eventlist-column-thumbnail.content-fill(href=`${link}`)
+
+            //- load image
+            img.eventlist-thumbnail(data-src=`${img_src}`, data-image=`${img_src}`, data-image-dimensions='', data-image-focal-point='0.5,0.5')
+
+            //- load date
+            a.eventlist-column-date(href=`${link}`)
+                .eventlist-datetag
+                    .eventlist-datetag-inner
+                        .eventlist-datetag-startdate.eventlist-datetag-startdate--month #{month}
+                        .eventlist-datetag-startdate.eventlist-datetag-startdate--day #{date}
+                        .eventlist-datetag-enddate #{year}
+
+        //- load title and abstract
+        .eventlist-column-info
+            h1.eventlist-title
+                a.eventlist-title-link(href=`${link}`) #{title}
+
+                #block-yui_3_17_2_1_1521598810432_30584.sqs-block.html-block.sqs-block-html(data-block-type='2')
+                    .sqs-block-content(style='font-family: Arial, Helvetica; font-weight: normal; font-style: normal; font-size: 14.6667px; color:#A9A9A9')
+                        | #{abstract}
+
+    .clear
+
+

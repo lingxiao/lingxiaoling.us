@@ -1,0 +1,69 @@
+extend parent.pug
+
+block content
+
+    include includes/title-card.pug
+    include includes/article.pug
+
+
+    +title_card('BLOG', 'Technology, society and their relationship with each other')
+
+    .main-content-inner-wrapper(data-content-field="main-content")
+        .gallery-wrapper(data-controller="GalleryLayout")
+            .slides
+                .grid-wrapper
+
+                    +article('On Higher Education'
+                        , 'Coming' 
+                        , ''
+                        , 'Soon'
+                        , '../assets/images/spartan-train-1.jpeg'
+                        , ''
+                        , 'Many lament higher education is broken as students spend four years beating the test, which often covers topics that is of marginal value in the real world. I argue the true priority of higher education is not information dissemination but rather ideological assimilation, so that graduates may be trusted to exercise their intellectual freedom within the narrow political framework that serves the current military and financial-industrial complex. Thus course work is merely the context in which free minds are re-educated through labor, and every exam is an ideological fit test masquerading as an intellectual exercise. Seen in this light, technology cannot improve education unless it redefines the social contract between the Worker, the Firm, and the State.'
+                        )
+
+
+                    +article('On Code is Law'
+                        , 'Coming' 
+                        , ''
+                        , 'Soon'
+                        , '../assets/images/blockchain-1.jpg'
+
+                        , ''
+                        , 'In this guest blog with Franklin Bi, former Vice President and Blockchain Strategy Lead at JP Morgan, we demystify the term "code is law", and discuss the various arenas where this is of value.'
+                        )
+
+
+                    +article('On Computer Vision: A Technical Survey'
+                        , 'Coming' 
+                        , ''
+                        , 'Soon'
+                        , '../assets/images/neural-net-1.png'
+                        , ''
+                        , 'This guest post written in conjunction with Stephen Christopher Phillips, Ph.D student in computer vision at the University of Pennsylvania, advised by Kostas Daniilidis. We discuss the success of deep learning in computer vision, as well as some short comings that may not be resolved any time soon. We differentiate between the kind of "web computer vision" tasks currently in production at Google, versus classical computer vision techniques from robotics that has significant relevance to augmented reality.'
+                        ) 
+
+                    +article('On Computer Vision: Commerical Applications'
+                        , 'Coming' 
+                        , ''
+                        , 'Soon'
+                        , '../assets/images/point-cloud-1.jpeg'
+                        , ''
+                        , 'In this post, I explore various applications of computer vision that is of peak commercial value, and provided a nuanced view about the relationship between the type and quality of sensors, and the applicability of common computer vision algorithms. Then I suggest some interesting new research that may be ready commercialization in the next five to ten years.'
+                        ) 
+
+                    +article('On Natural Language Processing'
+                        , 'Coming' 
+                        , ''
+                        , 'Soon'
+                        , '../assets/images/her-1.jpg'
+                        , ''
+                        , 'In this post, I discuss the current state of the art in natural language processing, and how the high-valued tasks in this field differs significantly from those of other "AI" tasks such as computer vision.'
+                        ) 
+
+
+
+
+
+
+

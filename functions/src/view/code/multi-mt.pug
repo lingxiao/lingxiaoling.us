@@ -1,0 +1,161 @@
+extend ../parent.pug
+
+block content
+
+  include ../includes/content/title.pug
+  include ../includes/content/header_2.pug
+  include ../includes/content/header_3.pug
+  include ../includes/content/image.pug
+
+  // / headerWrapper
+  #pageWrapper.hfeed(role='main')
+    section#page(data-content-field='main-content')
+      article#article-5ab1b4300e2e72081e59396c.hentry.category-social.author-benedict-evans.post-type-text(data-item-id='')
+        .content-wrapper
+          // SPECIAL CONTENT
+          .post
+            // POST HEADER
+
+            +title( "May 20th, 2017"
+              , "Learning Translations via"
+              , "Matrix Completion"
+              )
+
+            // POST BODY
+            .body.entry-content
+              #item-5ab1b4300e2e72081e59396c.sqs-layout.sqs-grid-12.columns-12(data-layout-label='Post Body', data-type='item', data-updated-on='1521595449661')
+                .row.sqs-row
+                  .col.sqs-col-12.span-12
+                    #block-yui_3_17_2_1_1521598810432_30584.sqs-block.html-block.sqs-block-html(data-block-type='2')
+                      .sqs-block-content
+
+                        +header_2('ABSTRACT')
+
+                        p
+                          | I was part of a large team led by <a target='_blank' href = 'http://www.seas.upenn.edu/~derry/'>Derry Wijyaya</a>, in collaboration with <a target='_blank' href='https://www.linkedin.com/in/brendan-d-callahan-a6473327/'>Brendan Callahan </a>, <a target='_blank' href='https://www.seas.upenn.edu/~johnhew/'> John Hewitt </a>, <a target='_blank' href='https://www.linkedin.com/in/jiegaoupenn/'>Jie Gao</a>, <a target='_blank' href='https://perso.limsi.fr/marianna/'>Marianna Apidianaki</a>. Supervised by <a target ='_target' href='http://www.cis.upenn.edu/~ccb/'>Chris Callison-Burch</a>. The <a target='_blank' href='http://www.aclweb.org/anthology/D17-1152'>paper</a> was published in ACL 2017 (25% acceptance rate). Bilingual lexicon induction is the task of learning word translations without bilingual parallel corpora. In this paper published in ACL 2017, we model bilingual lexicon induction as a matrix completion problem leveraging diverse set of data from text to images, each of which is allowed to be incomplete or noisy. Specifically, we construct a matrix with source words in the columns and target words in the rows, and formulate translation as matrix factorization with a Bayesian Personalized Ranking objective (BPR). This objective is appropriate because  the absence of values in the matrix does not imply a missing translation, and BPR cast the prediction of missing values as a ranking task.  The framework is tested on the VULIC1000 data set comprising of 1000 nouns in Spanish, Italian, and Dutch, and their one-to-one ground-truth translations in English, outperforming the state-of-the art models by significant margin. 
+
+
+                        +header_2('INTRODUCTION')
+
+                        +image('../../assets/images/city-2.jpg', 'The world is shrinking, opportunity and danger lay in every corner. When it speaks, will you understand?')
+
+                        p
+                          | Machine translation between languages is a crucial step in bringing the world together.  However machine translation requires large, sentence aligned bilingual texts to learn effective models, and such corpora is rare, especially for resource-constrained languages, and result in inaccurate translations. Due to the low quantity and thus coverage of the texts, there may still be “out-of-vocabulary” words encountered at run-time. The Bilingual Lexicon Induction (BLI) task which learns word translations from monolingual or comparable corpora to increase word coverage. Past attempts have often relied on simple count based methods, however the feature vectors constructed such way typically only support heuristic notion of distance. In recent years, there has been a resurgence of interest in word embeddings learned by recurrent neural networks (RNNs) that supports better notion of word similarities in certain tests. Recent work in machine translation leveraged such advances by constructing a shared bilingual embedding space spanned by the same basis, in this shared space words of the same meaning from different languages are distributed close together, providing an immediate measure to determine translations (see Fig 1). Typically, the transformation between the semantic space between two languages is induced using seed translations from existing dictionaries, or reliably extracted from pseudo-bilingual copra of comparable tasks. Recent work by <a target='_blank' href='https://arxiv.org/pdf/1706.00374.pdf'> Vulic et al. (2016)</a> and others showed what naively combining word embeddings with visual similarities from images can improve translation accuracy. We extend prior attempts by constructing a unified framework to integrate signals from monolingual, bilingual, and image data to improve accuracy of machine translation. 
+
+                        +image('../../assets/images/mf-11.png', 'Fig 1. It is possible to align the embeddings of two languages so that if two words translates into each other, then they are closer in a shared space. The alignment process requires a set of seed words to constrain the transformation. From Vulic and Korhonen (2016).')
+
+
+                        +header_2('PROBLEM FORMULATION')
+
+                        +image('../../assets/images/matrix-fact-2.png', 'Fig 2. Matrix factorization is commonly used in recommender systems, where the rows are users and columns are products. The matrix is sparse since most data is missing, and the goal is to predict the missing values. The assumption is that the observed data can be decomposed as the product of two matrices representing the latent factors that explains the data. Geometrically, this may be interpreted as finding the best set of basis that spans the data points.')
+
+                        +header_3('Overview')
+
+                        p
+                          | Our approach is based on extensions to the probabilistic model of matrix factorization (MF) in <a target='_target' href='https://datajobs.com/data-science-repo/Recommender-Systems-%5BNetflix%5D.pdf'>collaborative</a> <a target='_blank' href='https://arxiv.org/pdf/1205.2618.pdf'>filtering</a>. We represent our translation task as a matrix with source words in the columns and target words in the rows (Figure 1). Based on observed translations in the matrix found in a seed dictionary, our model learns low-dimensional feature vectors that encode the latent properties of the words in the row and the words in the column. The dot product of these vectors, which indicate how “aligned” the source and the target word properties are, captures how likely they are to be translations.  Missing values in the matrix are interpreted as missing translations. Bayesian Personalized Ranking approach to Matrix Factorization (Rendle et al., 2009) formulates the task of predicting missing values as a ranking task. With the assumption that observed true translations should be given higher values than unobserved translations, BPR learns to optimize the difference between values assigned to the observed translations and values assigned to the unobserved translations. However bilingual dictionaries do not exist for some languages, thus existing formulation of MF with BPR suffers from the “cold start” issue. We mitigate the problem by incorporating monolingual signals of translation equivalence, and visual representations of words extracted from images by <a target='_blank' href='https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf'>AlexNet</a>.
+
+                        +image('../../assets/images/translate-1.png', 'Fig 3.  Five images for the french word eau and its top 4 translations ranked using visual similarities, defined as cosine distance between image features extracted by AlexNet. From Wijaya et al.')
+
+                        +header_3('Details')
+
+                        p
+                          | Specifically, given a set of source words F and a set of target words E, and the pair of words (e,f) where e ∈ E and f ∈ F, (e,f) is a candidate translation with an associated score x<sub>e,f</sub><sup>MF</sup> ∈ [0, 1], we wish to generate the missing translations. That is given any arbitrary tuple (e,f), we wish wish to assign a value x<sub>e,f</sub><sup>MF</sup> stating how likely f translates to e. Using matrix factorization, we can decompose the matrix X<sup>MF</sup> of x<sub>e,f</sub><sup>MF</sup> into two low-rank matrices: 
+
+                        +image('../../assets/images/mf-1.png', '')
+
+                        p
+
+                          | so that each x<sub>e,f</sub><sup>MF</sup> = p<sub>e</sub> q<sub>f</sub>. We solve the cold-start problem alluded above by computing an auxiliary value x<sub>e,f</sub><sup>AUX</sup> using other features associated with each word: 
+
+                        +image('../../assets/images/mf-3.png', '')
+
+                        p
+                          | in this case θ<sub>e</sub> is the visual features extracted by AlexNet, and each α<sub>i</sub> is another auxiliary feature. Note all the parameters in the expression are learned. Note although it is possible to combine x<sub>e,f</sub><sup>MF</sup> and x<sub>e,f</sub><sup>AUX</sup> by addition, we note that x<sub>e,f</sub><sup>MF</sup> has high precision but low recall, and vice versa for x<sub>e,f</sub><sup>AUX</sup>. Thus we only back-off to x<sub>e,f</sub><sup>AUX</sup> for words that have too few associated translations. 
+
+                        p
+                          | Learning for Bayesian Personalized Ranking involves maximizing the difference in values assigned to observed translations compared to those assigned to unobserved translations. That is given a training set of triples: (e, f, g) so that e translates to f, but not to g, we want to maximize the difference: 
+
+                        +image('../../assets/images/mf-4.png', '')
+
+                        p
+                          | Specifically, for logistic sigmoid function σ, parameter vector Θ with values x<sub>e,f,g</sub>, and hyperparameter λ<sub>Θ</sub> the objective function of BPR is to maximize the sum of log triplet score differences subject to sparsity penalty: 
+
+                        +image('../../assets/images/mf-5.png', '')
+
+                        p
+                          | The model is trained using stochastic gradient descent. 
+
+
+                        +header_2('DATASET AND EXPERIMENTS')
+
+                        p
+                          | We benchmark our method on two tests sets:
+
+                          <ol>
+                            <li> <a target='_blank' href='http://www.aclweb.org/anthology/P16-2031'>VULIC1000</a>: 1000 nouns in Spanish, Italian, and Dutch, along with their one-to-one ground-truth word translations in English. 
+                            <li> <a target='_blank' href='http://www.aclweb.org/anthology/Q14-1007'>CROWDTEST</a>: a larger set of 27 languages from crowdsourced dictionaries.
+                          </ol>
+
+                        p
+                          | For each language, we randomly pick up to 1000 words that have only one English word translation in the crowdsourced dictionary to be the test set for that language. On average, there are 967 test source words with a variety of POS per language.  Furthermore, we construct another bilingual translation dataset WIKI, using interlingual links among Wikipedia pages to identify words in a third language that translates to words in the source and target language. And finally, we construct WIKI + CROWD comprised of a set of translations from the source to non-target languages, pivoted through wikipedia pages. We test the efficacy of our algorithm in these four studies using the datasets we collected:
+
+                          <ol type ='I'>
+                            <li> x<sub>e,f</sub><sup>MF-W</sup> Monolingual signals for translation: using WIKI. 
+                            <li> x<sub>e,f</sub><sup>MF-W+C</sup> Monolingual signals for translation: using WIKI+CROWD
+                            <li> x<sub>e,f</sub><sup>AUX-WE</sup>Bilingual informed word embeddings: the source and target embeddings are learned using word2vec skiagram model on tokenized Wikipedia pages. And the mapping between two embeddings are learned with crowdsourced translations as seed. The linear mapping minimizes squared error after translation:
+
+
+                            +image('../../assets/images/mf-6.png', '')
+
+                          p
+                            | where X<sub>E</sub> and X<sub>F</sub> are source and target languages, while W is the transformation between the two sets. 
+
+                            <li> x<sub>e,f</sub><sup>AUX-VIS</sup> Visual representation of words: We use a large <a target='_blank' href='/corpus-mt'>multilingual corpus</a> of labeled images to obtain the visual representation of the words in our source and target languages. The corpus contains 100 images for up to 10k words in each of 100 foreign languages, plus images of each of their translations into English. For each word, we use 10 images from the dataset and extract feature representation using a four layer neural net W = (φ(1), φ(2), φ(3), φ(4)) trained with the objective:<br>
+
+
+                            +image('../../assets/images/mf-7.png', '')
+
+                          p
+                            | where x<sub>e</sub> and x<sub>f</sub> are source and target words.
+                          </ol>
+
+                          p
+                            | Finally, during testing we combine two auxiliary signals word embeddings and image embeddings with:<br>
+
+                            +image('../../assets/images/mf-9.png')
+
+                          p
+                            | and output the translation probability according to:<br>
+
+                            +image('../../assets/images/mf-8.png')
+
+
+                        +header_2('RESULTS AND DISCUSSION')
+
+                        p
+                          | Using the back-off scheme we described before, we run the following six set of experiments:
+
+                          <ol>
+                            <li> BPR_W uses only x<sub>e,f</sub><sup>MF-W</sup> 
+                            <li> BPR_W+C uses x<sub>e,f</sub><sup>MF-W</sup>  with back-off to x<sub>e,f</sub><sup>MF-W+C</sbup> 
+                            <li> BPR_LN uses only x<sub>e,f</sub><sup>AUX-WE</sup> with linear mapping as described in III
+                            <li> BPR_NN uses only x<sub>e,f</sub><sup>AUX-WE</sup>  with nonlinear mapping as seen in IV
+                            <li> BPR_WE uses x<sub>e,f</sub><sup>MF-W</sup>, x<sub>e,f</sub><sup>MF-W+C</sup>  and x<sub>e,f</sub><sup>AUX-WE</sup> with nonlinear mapping
+                            <li> BPR_VIS uses x<sub>e,f</sub><sup>MF-W</sup>, x<sub>e,f</sub><sup>MF-W+C</sup>, and combines x<sub>e,f</sub><sup>AUX-WE</sup> with x<sub>e,f</sub><sup>AUX-VIS</sup> as described above.
+                          </ol>
+
+                        p
+                          | We benchmark each of the methods against the <a target='_blank' href='https://pdfs.semanticscholar.org/9b25/2a3318efbe39f95520d1d03a787059430035.pdf'>state of the art</a> baseline model on the VULIC1000 dataset:<br>
+
+                          +image('../../assets/images/mf-10.png','')
+
+                        p
+                          | The baseline mutual nearest neighbor method (MNN) uses mutual nearest neighbor pairs (MNN) obtained from pseudo-bilingual corpora constructed from unannotated monolingual data of the source and target languages, and ranks candidate target words based on their cosine similarities to the source word in the shared space. As we can see above, our methods perform better across all translation pairs, in particular when multi-modal information is used for translation. We observe  a similar trend in the CROWDTest data. <br>
+
+                          +image('../../assets/images/mf-12.png','Fig 4. CROWDTest across 27 languages shows that more signals improves translation accuracies.')
+
+                        p
+                          | Finally, we noted that a seed lexicon size of 5k is sufficient to achieve optimal performance across languages, although it is unclear why this is.  In conclusion, in this project we proposed a novel framework for combining multi-modal data from diverse sources, each of which may be sparse or noisy. The framework is based on matrix completion and use BPR to learn translations. Our method is effective across different languages, and accuracy improves as the volume of data increases. Finally, our framework can trivially incorporate additional signals.
+
+
+

@@ -1,0 +1,95 @@
+extend ../parent.pug
+
+block content
+
+  include ../includes/content/title.pug
+  include ../includes/content/header_2.pug
+  include ../includes/content/header_3.pug
+  include ../includes/content/image.pug
+
+  // / headerWrapper
+  #pageWrapper.hfeed(role='main')
+    section#page(data-content-field='main-content')
+      article#article-5ab1b4300e2e72081e59396c.hentry.category-social.author-benedict-evans.post-type-text(data-item-id='')
+        .content-wrapper
+          // SPECIAL CONTENT
+          .post
+            // POST HEADER
+
+
+            +title( "May 10th, 2017"
+                  , "Massive Multilingual Corpus for"
+                  , "Learning Translations From Images"
+                  )
+
+    
+            // POST BODY
+            .body.entry-content
+              #item-5ab1b4300e2e72081e59396c.sqs-layout.sqs-grid-12.columns-12(data-layout-label='Post Body', data-type='item', data-updated-on='1521595449661')
+                .row.sqs-row
+                  .col.sqs-col-12.span-12
+                    #block-yui_3_17_2_1_1521598810432_30584.sqs-block.html-block.sqs-block-html(data-block-type='2')
+                      .sqs-block-content
+
+                        +header_2('ABSTRACT')
+
+                        p
+                          | I was part of a multi-year project led by <a target='_blank' href='https://www.linkedin.com/in/brendan-d-callahan-a6473327/'>Brendan Callahan </a>, in collaboration with <a target='_blank' href='https://www.seas.upenn.edu/~johnhew/'> John Hewitt </a> and  <a target='_blank' href = 'http://www.seas.upenn.edu/~derry/'>Derry Wijyaya</a>, supervised by <a target ='_target' href='http://www.cis.upenn.edu/~ccb/'>Chris Callison-Burch</a>.  In this project, we introduce a new large scale multilingual corpus of labeled images collected to facilitate research in learning translations via visual similarity. We have collected 100 images for up to 10,000 words in each of 100 foreign languages, and images for each of their translations into English. In addition, we collected the text from the web pages where each of the images appeared. Our dataset contains 35 million images and web pages, totaling 25 terabytes of data. Finally, we released vectors representation of each image extracted using Scale Invariant Feature Transform (SIFT) features, color histograms and convolutional neural network (CNN) features from AlexNet. 
+
+                        p
+                          | The project paper "A Large Multilingual Corpus for Learning Translations from Images" that was submitted for EMNLP 2017 but ultimately rejected because "the authors have provided some imporatant examples and statistics in the supplementary material whereas the paper should be self-contained as mentioned in the call for papers."
+
+
+                        +header_2('INTRODUCTION')
+
+                        +image('../../assets/images/corpus-mt-6.png', 'Fig 1. Matching words through their images: images retrieved from Google for the word cat in different languages. We match using SIFT and AlexNet features (Callahan 2017).')
+
+                        p
+                          | Machine translation typically require bilingual sentence-aligned parallel texts. However such texts often do no exist, in particular for low resource languages.  In such cases researchers have explored various monolingual signals that is preserved across languages: from <a target='_blank' href='http://www.aclweb.org/anthology/E03-1076'>surface</a> <a target='_blank' href='http://www.aclweb.org/anthology/P08-1088'>form</a> of words to aligning <a target='_blank' href='https://www.cs.jhu.edu/~vandurme/papers/BergsmaVanDurmeIJCAI11.pdf'>SIFT image representation of words</a>. Image represenation of words is ideal because it is both universal and plentiful: billions of images with associated labels can be readily retrieved across languages using Google search. In this project, we compared the efficacy of using image representation of words extracted by SIFT (scale invariant feature transform) and those learned by AlexNet for machine translation. We differentiate from prior dataset in both size and scope. Our data has 100 images covering over 260k words in English, and over 10k words in 100 foreign languages. Finally, our corpus include both concrete and non-concrete nouns. We introduced the methodology for creating the resources, in particular how we avoided recreating Google’s bilingual dictionaries used to query results for the image search, and reported a series of experiments that demonstrate the value of our images for machine translation. 
+
+
+                        +header_2('TECHNICAL BACKGROUND')
+
+                        p
+                          | In this section we introduce SIFT, convolutional neural nets, and machine translation through multi-modal data. SIFT, or scale invariant feature transform are local image features that is invariant to scaling and rotation, they are robust to illumination, noise and distortion. Until the introduction of convolutional neural nets, SIFT is the most common local feature descriptor method in computer vision.  For example, SIFT features may be extracted and concatenated to create a bag-of-words description for the image, which may be used in a regression model for classification. In fact, <a target='_blank' href='https://www.cs.jhu.edu/~vandurme/papers/BergsmaVanDurmeIJCAI11.pdf'>Bergsma and Van Durme</a> used this bag-of-words representation to significantly increase the accuracy of translation in over 15 language pairs. 
+
+                        +image('../../assets/images/corpus-mt-7.png', 'Fig 2. SIFT features is invariant to scaling and rotation of image. It is robust enough across images that it can used as the input to a computer vision pipeline that takes multiple pictures and reconstructs the three dimensional structure of an object (Sameer et al, 2009).')
+
+                        p
+                          | Since the late 2000s, convolutional neural networks (CNN) have replaced many traditional methods in computer vision due to cheaper computing power, deluge of data, and the fact that performance of CNNs continue to increase with the size of data while traditional methods often plateau. Contrary to some neural networks, features learned by CNNs are both informative and can be interpreted visually. In figures 3 - 6, we show that lower layers in the network capture local features similar to SIFT, while higher levels discriminate among class-level concepts. Empricially speaking, this makes the top layers of a convolutional neural net more informative representations of classes than SIFT across many tasks. Thus we hypothesized that CNNs could be ideal feature extractors for monolingual machine translation as well, whose goal is to discrminate among classes/words using sets of images. 
+
+                        +image('../../assets/images/corpus-mt-4.png', 'Fig 3. The first layer (top) and second layer (bottom) learned from natural images. Note the first layer learns oriented edges, while the second layer learns combination of oriented edges. From Lee et al (2009).')
+
+                        +image('../../assets/images/corpus-mt-2.png', 'Fig 4. Bottom layers in the network detecting lower level structures such as oriented edges, colors, and corners. From Shi (2018).')
+
+                        +image('../../assets/images/corpus-mt-3.png', 'Fig 5. Deeper layers detecting high-level concepts such as object structure and their parts. From Shi (2018).')
+
+                        +image('../../assets/images/corpus-mt-5.png', 'Fig 6. The last layers of the network differentiate among multiple object classes, and thus are informative representations of such classes. From Shi (2018).')
+
+                        //- +image('../../assets/images/corpus-mt-1.png', 'Fig 2. Images within the same labels are closer together in embedding space. Because images returned by Google searches are similar across different languages, we can exploit the similarity to translate among languages. Socher et al. (2013b)')
+
+                        +header_2('CORPUS CREATION')
+
+                        p
+                          | We created our dataset by querying Google Image Search for images associated with the English and foreign words in 100 bilingual dictionaries.  Specifically We constructed bilingual dictionaries from English onto 100 foreign languages, with 10k words in each dictionary. We discarded words where English and foreign words are identical. Then for each word in the dictionary, we queried Google Image search for images associated with the word in English and the foreign word. In order to prevent replication of Google's internal bilingual dictionary which may have been used to construct the return query,  we cross-referenced the URL associated with the image to ensure the image appeared on the page. In addition, we filter out images from pages that is not from the target language. Over all, 100 images are retrieved per word for English and the foreign language, and we extracted feature representation of the words using SIFT with color histograms, and AlexNet.
+
+                        +header_2('RESULTS AND DISCUSSION')
+
+                        p
+                          | We use the following expression to find words with the closest translation, given sets of images &#8496 from the source word e and &#8497 from the target word f, the average top-matches are used to produce a single value: 
+
+
+                        +image('../../assets/images/corpus-mt-8.png', '')
+
+                        p
+                          | The model's ranking is evaluated using Mean Reciprocal Rank (MRR) and top-N accuracy. Unlike <a target='_blank' href='https://www.cs.jhu.edu/~vandurme/papers/BergsmaVanDurmeIJCAI11.pdf'>previous work</a> which only translate among concrete nouns in high resource languages, we consider all words in our corpus, and amongst many low resource languages such as Uzbek and Urdu. When analyzing the results, we chose 500 most concrete words (often words that is grounded in one concept in reality, such as "car") and report the results separately. The concrete nouns are selected according the Ghent dataset.  
+
+                        +image('../../assets/images/corpus-mt-9.png', 'Fig 7. MRR for some of the languages. Closer to 1 is better. S+H is SIFT with color histogram features, CNN is features extracted by AlexNet.')
+
+                        p
+                          | Given figure 7, it is clear that AlexNet out performs Sift and histogram features across the board, confirming our initial intuition. Furthermore, translation quality is higher for concrete nouns, which have a narrower distribution of images, than all words. 
+
+                        +header_2('CONCLUSION')
+
+                        p
+                          | In this project, we created and released a new dataset to assess the value add of image similarity in machine translation. Our data set is significantly larger than prior attempts and cover high and low resource languages. We demonstrate the superior value of features extracted by AlexNet versus those from color histograms and SIFT. Furthermore, in the paper <a target='_blank' href='./multi-mt'>"Learning Translations via Matrix Completion"</a>, we show the features can be incorporated into a more general framework for machine translation. Finally, we have released the data set for open consumption via the LDC.

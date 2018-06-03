@@ -1,0 +1,16 @@
+include menu.pug
+
+.index-nav
+	.index-gallery-wrapper.index-item-navigation(data-controller="IndexSetup, IndexPositioning, IndexNavOverflow, IndexNavScroll")
+		.collection-images.index-nav-images
+
+			.overlay.blended-overlay.index-overlay
+
+		+menu( '/art'
+		     , '/blog'
+		     , '/code'
+		     , false
+		     , ''
+		     , 'https://github.com/lingxiao/lingxiaoling.me'
+		     )
+

@@ -1,0 +1,27 @@
+//- include icons/down_arrow.pug
+
+mixin menu(art, blog, code, hero, about_me_link, github_link)
+    
+    
+    //- TODO: remove background color after debugging
+    //- .collection-nav-desc-wrapper(style='background-color:powderblue')
+    .collection-nav-desc-wrapper
+        #collectionDesc.collection-desc
+            p
+                a(href=`${art}`) Art 
+                |  |
+                a(href=`${blog}`)   Blog
+                |  |
+                a(href=`${code}`)   Code
+
+        nav.index-navigation.collection-nav(role='navigation')
+
+            if hero
+                <a href="#{about_me_link}">
+                    <i class="fas fa-flag-xiao fa-chevron-down" style='font-size:3vw'></i> &nbsp;
+                </a>
+            else
+                <a href="#{github_link}", target='_blank'>
+                    <i class="fab fa-flag-xiao fa-github" style='font-size:3vw'></i>
+                </a>
+

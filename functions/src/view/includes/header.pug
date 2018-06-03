@@ -1,0 +1,32 @@
+nav.main-navigation--overlay
+	.nav-item.external
+		a(href='curriculum-vitae', target='_blank')
+			span CV
+header#siteHeader.site-header
+	.site-branding(data-content-field='site-title')
+		h1.site-title(style='padding: 0 4vw')
+			a(href='/')
+				span.site-title Xiao Ling
+
+	//- div disappear on scroll
+	a#navToggle.nav-toggle.flex-item
+		div
+			svg.Icon.Icon--hamburger.nav-toggle-label-icon(viewbox='0 0 24 18')
+				g.svg-icon.use--even
+					line(fill='none', stroke-miterlimit='10', x1='0', y1='2', x2='24', y2='2')
+					line(fill='none', stroke-miterlimit='10', x1='0', y1='9', x2='24', y2='9')
+					line(fill='none', stroke-miterlimit='10', x1='0', y1='16', x2='24', y2='16')
+				g.svg-icon.use--odd
+					line(fill='none', stroke-miterlimit='10', x1='0', y1='1.5', x2='24', y2='1.5')
+					line(fill='none', stroke-miterlimit='10', x1='0', y1='8.5', x2='24', y2='8.5')
+					line(fill='none', stroke-miterlimit='10', x1='0', y1='15.5', x2='24', y2='15.5')
+			svg.Icon.Icon--close.nav-toggle-label-icon(viewbox='0 0 18 18')
+				g.svg-icon
+					line(fill='none', stroke-miterlimit='10', stroke-linecap='butt', x1='0', y1='0', x2='18', y2='18')
+					line(fill='none', stroke-miterlimit='10', stroke-linecap='butt', x1='18', y1='0', x2='0', y2='18')
+
+	.nav-social-wrapper(data-content-field='navigation', data-annotation-alignment='bottom')
+		nav#mainNavigation.main-navigation.has-items
+			.nav-item.external(style='padding: 0 4vw')
+				a(href='/curriculum-vitae', target='_blank')
+					span CV

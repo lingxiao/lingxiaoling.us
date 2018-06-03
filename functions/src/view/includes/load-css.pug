@@ -1,0 +1,52 @@
+//- Meta data
+meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+meta(name="viewport" content="initial-scale=1")
+base(href="")
+meta(charset="utf-8")
+link(rel='shortcut icon', type='image/x-icon', href='../assets/images/favicon.ico')
+meta(itemprop="thumbnailUrl" content="../assets/images/hi.jpg")
+link(rel="image_src" href="../assets/images/hi.jpg")
+meta(itemprop="image" content="../assets/images/hi.jpg")
+meta(name="twitter:title" content="Tech")
+meta(name="twitter:image" content="../assets/images/hi.jpg")
+meta(name="twitter:url" content="https://lingxiaoling.me/tech/")
+meta(name="twitter:card" content="summary")
+meta(name="twitter:description" content="")
+
+//- scripts
+script(type='text/javascript', src='../assets/js/squarespace.js')
+
+script(type="text/javascript").
+	try{Typekit.load();}catch(e){}
+link(rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:900,700,700i,900i,400")
+script(type="text/javascript").
+	SQUARESPACE_ROLLUPS = {};
+script.
+	(function(rollups, name) { if (!rollups[name]) { rollups[name] = {}; } rollups[name].js = ["../assets/js/common-4dba3cefd2ccb038c272-min.en-US.js"]; })(SQUARESPACE_ROLLUPS, 'squarespace-common');
+script(crossorigin="anonymous" src="../assets/js/common-4dba3cefd2ccb038c272-min.en-US.js")
+
+script(type='text/javascript', src='../assets/js/static-context-full.js')
+
+script(type="text/javascript").
+	SquarespaceFonts.loadViaContext(); Squarespace.load(window);
+script(type="application/ld+json").
+	{"url":"","name":"Xiao Ling","description":"<p>Personal website. Machine Learning. Computer Vision. Natural language 
+	processing. Figure Drawing.</p>","@context":"http://schema.org","@type":"WebSite"}
+
+//- replace adobe-garamond-pro with Granjon so that it shows when deployed
+link(rel='stylesheet', type='text/css', href='../assets/css/squarespace-Granjon.css')  
+
+
+//- icon fonts
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
+
+
+
+// End of Squarespace Headers
+script.
+	(function(){var touchTest="ontouchstart"in window||navigator.msMaxTouchPoints;if(!touchTest){with(document.documentElement){className=className.replace(new RegExp("touch-styles"),"")}}})()
+
+//- make sure this fires on console otherwise this file is never loaded
+script.
+	(function(){ console.log("load-scripts.pug executed ...")})()

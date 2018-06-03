@@ -1,0 +1,19 @@
+mixin article-no-image(title, month, date, year, img_src, link, abstract)
+
+	//- article class
+	article.eventlist-event.eventlist-event--upcoming.eventlist-event--hasimg.eventlist-hasimg.eventlist-event--multiday
+		//- load title and abstract
+		.eventlist-column-info
+			h1.eventlist-title
+				a.eventlist-title-link(href=`${link}`) #{title}
+			ul.eventlist-meta.event-meta
+				li.eventlist-meta-item.eventlist-meta-date.event-meta-item
+
+					//- date
+					time.event-date(datetime='', style='font-family: Arial, Helvetica; letter-spacing: 0px; font-weight: normal; font-style: normal; font-size: 16.6667px; line-height:1.2')
+						| #{month} #{date}, #{year}
+					br
+					//- abstract: note override existing style to fit my template design
+					time.event-date(datetime='', style='font-family: Arial, Helvetica; letter-spacing: 0px; font-weight: normal; font-style: normal; font-size: 14.6667px; line-height:1.2')
+						| #{abstract}
+	.clear

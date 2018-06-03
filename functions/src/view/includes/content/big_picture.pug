@@ -1,0 +1,25 @@
+//- 
+//- module: insert big picture 
+//- Date  : April 18th, 2018
+//- Author: Xiao Ling
+//- Bug   : right now this is conflicting w/ the div around it, pushing them out of the way 
+//-         maybe the right thing to do is to have the option for a big picture attached to each
+//-         section above and below the section
+//- 
+mixin big_picture(src, caption)
+
+	//- this bit did something here, but not quite what we wanted
+	#block-yui_3_17_2_2_1512340736618_62585.sqs-block.image-block.sqs-block-image(data-block-type="5")
+		.sqs-block-content
+			<div class="image-block-outer-wrapper layout-caption-below design-layout-inline">
+				<div class="intrinsic" style="max-width:2229.0px;">
+					<class='image-block-wrapper has-aspect-ratio'>
+						img.thumb-image(src=`${src}` style="width:100%; float: center")
+					</div>
+					<div class="image-caption-wrapper">
+						<div class="image-caption"><p>#{caption}</a></p></div>
+					</div>
+				</div>
+			</div>
+	#block-yui_3_17_2_2_1512340736618_62863.sqs-block.html-block.sqs-block-html(data-block-type="2")
+
