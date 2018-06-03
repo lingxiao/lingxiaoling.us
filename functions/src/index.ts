@@ -28,7 +28,8 @@ app.get('/curriculum-vitae', (req : express.Request , res : express.Response, ne
 
 
 app.get('/final_hj_ling', (req : express.Request , res : express.Response, next : express.NextFunction ) => 
-	pdf_controller.serve_hj(req, res)
+	// pdf_controller.serve_hj(req, res)
+	res.redirect('https://github.com/lingxiao/lingxiaoling.us/blob/master/public/final_hj.pdf')
 );
 
 
