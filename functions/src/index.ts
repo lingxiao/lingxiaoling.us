@@ -49,7 +49,6 @@ app.get('/on-cv-tech', (req : express.Request, res : express.Response) => {
 	res.render('blog/on-cv-tech.pug', {});
 });
 
-
 app.get('/on-cv-commercial', (req : express.Request, res : express.Response) => { 
 	res.render('blog/on-cv-commerical.pug', {});
 });

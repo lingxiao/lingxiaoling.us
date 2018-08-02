@@ -7,11 +7,9 @@
 
 'use strict'; 
 
-
 import * as express     from 'express'    ;
 import * as bodyParser  from "body-parser";
 import * as path        from "path"  	  ;
-
 
 /**
 	initalize a new express app and configure middle ware and view engine

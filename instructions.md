@@ -88,7 +88,7 @@ II. Set up firebase + node.js project
 
 9. deploy with: 
 		
-		```firebase deploy -only functions,hosting```
+		```firebase deploy --only functions,hosting```
 
 	Note if there's any error, then project will not deploy
 
